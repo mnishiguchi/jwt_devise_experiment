@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  
-  devise_for :identities
+
+  get 'react' => 'react#index'
+
+  resources :authentications, only: :create
+
+  devise_for :identities, controllers: {
+    sessions:      'sessions',
+    registrations: 'registrations'
+  }
+
   root 'pages#home'
 end
