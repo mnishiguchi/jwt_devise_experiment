@@ -3,8 +3,15 @@
 In this repo, I will learn how to implement a simple authentication system using
 JWT and Devise.
 
-I followed the tutorial
-[An Introduction to Using JWT Authentication in Rails](https://www.sitepoint.com/introduction-to-using-jwt-in-rails/) by sitepoint.com
+
+#### Using Knock gem
+
+- [Rails API by driftingruby.com](https://www.driftingruby.com/episodes?tag=api)
+
+#### Using JWT gem
+
+- [An Introduction to Using JWT Authentication in Rails](https://www.sitepoint.com/introduction-to-using-jwt-in-rails/) by sitepoint.com
+- [Rails, Devise, JWT and the forgotten Warden](https://medium.com/@goncalvesjoao/rails-devise-jwt-and-the-forgotten-warden-67cfcf8a0b73#.k83x6ksr7)
 
 ---
 
@@ -27,22 +34,32 @@ rails c
 
 Without any email or password, the response should be `{"errors":["Not Authenticated"]}`
 
-```
-curl http://localhost:3000/react
+```bash
+$ curl -i http://localhost:3000/react
+HTTP/1.1 401 Unauthorized
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: text/html
+Cache-Control: no-cache
+
+X-Request-Id: 84a098bf-da0a-4672-982e-2b519da79935
+X-Runtime: 0.006754
+Transfer-Encoding: chunked
 ```
 
 You will receive a successful response with a JSON Web Token and additional user information.
 
-```
-$ curl -X POST -d email="user@example.com" -d password="password" http://localhost:3000/authentications
-{"auth_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eV9pZCI6MX0.9Srv3J08hpELrfzde2IHBdpFeNxkUtL-aGO_l1M6xF4","identity":{"id":
-1,"email":"user@example.com"}}
+```bash
+$ curl -X POST "http://localhost:3000/identity_token" -d '{"auth": {"email": "user@example.com
+", "password": "password"}}' -H "Content-Type: application/json"
+{"jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0ODM4NDQ2NjEsInN1YiI6MX0.-n5R0et8Ick0qwoXdODE0kLpxCUuBGQPN2BKcOiYrkY"}
 ```
 
 With our fresh auth_token, you should receive a successful login response.
 
 ```
-curl --header "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eV9pZCI6MX0.9Srv3J08hpELrfzde2IHBdpFeNxkUtL-aGO_l1M6xF4" http://localhost:3000/react.json
+$ curl -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0ODM4NDQ2NjEsInN1YiI6MX0.-n5R0et8Ick0qwoXdODE0kLpxCUuBGQPN2BKcOiYrkY" http://localhost:3000/react.json
 {"logged_in":true}
 ```
 

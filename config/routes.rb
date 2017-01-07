@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'react' => 'react#index'
+  post 'identity_token' => 'identity_token#create'
 
-  resources :authentications, only: :create
+  get 'react'           => 'react#index'
 
   devise_for :identities, controllers: {
     sessions:      'sessions',
