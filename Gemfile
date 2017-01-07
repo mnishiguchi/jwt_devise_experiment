@@ -10,7 +10,8 @@ gem 'puma',  '~> 3.0'
 ###
 
 gem 'devise'
-gem 'jwt'
+# gem 'jwt'
+gem 'knock'
 
 ###
 # OTHERS
@@ -32,7 +33,7 @@ gem 'jquery-rails'
 # gem 'pundit'
 # gem 'react_on_rails', "~> 6"
 gem 'sass-rails', '~> 5.0'
-gem 'simple_form'
+# gem 'simple_form'
 gem 'slim-rails'
 # gem 'strip_attributes'
 gem 'turbolinks', '~> 5'

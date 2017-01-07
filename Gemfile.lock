@@ -123,7 +123,11 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.0.2)
-    jwt (1.5.4)
+    jwt (1.5.6)
+    knock (2.0)
+      bcrypt (~> 3.1)
+      jwt (~> 1.5)
+      rails (>= 4.2)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -265,9 +269,6 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
-    simple_form (3.4.0)
-      actionpack (> 4, < 5.1)
-      activemodel (> 4, < 5.1)
     simplecov (0.12.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -342,7 +343,7 @@ DEPENDENCIES
   guard-minitest
   jbuilder (~> 2.5)
   jquery-rails
-  jwt
+  knock
   launchy
   letter_opener_web
   listen (~> 3.0.5)
@@ -367,7 +368,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver (~> 2.53, >= 2.53.4)
   shoulda-matchers
-  simple_form
   simplecov
   slim-rails
   spring
@@ -381,4 +381,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

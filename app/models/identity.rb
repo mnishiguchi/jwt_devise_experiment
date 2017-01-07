@@ -3,4 +3,10 @@ class Identity < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  alias_method :authenticate, :valid_password?
+
+  def self.from_token_payolad(payload)
+    self.find payload["sub"]
+  end
 end
